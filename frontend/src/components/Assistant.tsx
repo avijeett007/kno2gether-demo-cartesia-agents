@@ -184,14 +184,26 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
         >
           <Button
             state="destructive"
-            className=""
+            className="bg-brand-background hover:bg-brand-border text-brand-text-primary border border-brand-border"
             size="medium"
             onClick={() => {
               onConnect(roomState === ConnectionState.Disconnected);
             }}
           >
-            Disconnect
+            Start a Conversation
           </Button>
+          <a 
+            href="mailto:support@kno2gether.com"
+            className="inline-block"
+          >
+            <Button
+              state="secondary"
+              size="medium"
+              className="bg-brand-border hover:bg-brand-hover text-brand-text-primary"
+            >
+              Contact Us
+            </Button>
+          </a>
           <MicrophoneButton localMultibandVolume={localMultibandVolume} />
           <Button
             state="secondary"
@@ -202,6 +214,7 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
                 setShowSettings(false);
               }
             }}
+            className="bg-brand-border hover:bg-brand-hover text-brand-text-primary"
           >
             <MenuSVG />
           </Button>
@@ -254,6 +267,18 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
               <LoadingSVG diameter={24} strokeWidth={4} />
             </div>
           </Button>
+          <a 
+            href="mailto:support@kno2gether.com"
+            className="inline-block"
+          >
+            <Button
+              state="secondary"
+              size="large"
+              className="relative text-sm md:text-base bg-brand-border hover:bg-brand-hover text-brand-text-primary"
+            >
+              Contact Us
+            </Button>
+          </a>
         </motion.div>
       </div>
     );
@@ -296,21 +321,21 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
     return (
       <div className="flex flex-col h-full w-full items-start">
         {isAgentConnected && voices && voices.length > 0 && (
-          <div className="w-full text-foreground py-4 relative">
-            <div className="sticky bg-background py-2 top-0 flex flex-row justify-between items-center px-4 text-xs uppercase tracking-wider">
-              <h3 className="font-mono font-semibold text-sm">Voices</h3>
+          <div className="w-full text-gray-100 py-4 relative">
+            <div className="sticky bg-brand-background py-2 top-0 flex flex-row justify-between items-center px-4 text-xs uppercase tracking-wider">
+              <h3 className="font-mono font-semibold text-sm text-knotie-400">Voices</h3>
             </div>
-            <div className="px-4 py-2 text-xs text-foreground leading-normal">
+            <div className="px-4 py-2 text-xs text-brand-text-secondary leading-normal">
               <div className={"flex flex-col text-left h-full"}>
                 {voices.map((voice) => (
                   <button
                     onClick={() => {
                       onSelectVoice(voice.id);
                     }}
-                    className={`w-full text-left px-3 py-2 font-mono text-lg md:text-sm ${
+                    className={`w-full text-left px-3 py-2 font-mono text-lg md:text-sm transition-colors duration-200 ${
                       voice.id === currentVoiceId
-                        ? "bg-foreground text-background"
-                        : "hover:bg-white/10"
+                        ? "bg-knotie-900/50 text-brand-text-primary border-l-2 border-knotie-400"
+                        : "hover:bg-brand-hover text-brand-text-secondary"
                     }`}
                     key={voice.id}
                   >
@@ -329,57 +354,66 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
     return (
       <div className="flex flex-col h-full w-full items-start">
         {isAgentConnected && (
-          <div className="w-full text-foreground py-4 relative">
-            <div className="sticky bg-background py-2 top-0 flex flex-row justify-between items-center px-4 text-xs uppercase tracking-wider">
-              <h3 className="font-mono font-semibold text-sm">Settings</h3>
+          <div className="w-full text-gray-100 py-4 relative">
+            <div className="sticky bg-brand-background py-2 top-0 flex flex-row justify-between items-center px-4 text-xs uppercase tracking-wider">
+              <h3 className="font-mono font-semibold text-sm text-knotie-400">Settings</h3>
             </div>
-            <div className="px-4 py-2 text-xs text-foreground leading-normal">
+            <div className="px-4 py-2 text-xs text-brand-text-secondary leading-normal">
               <div className="flex flex-col gap-4">
-                <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-lg border border-purple-500/30">
-                  <h4 className="font-semibold mb-2">🚀 More Features Coming Soon!</h4>
-                  <p className="text-sm mb-2">This is just a preview of what's possible with Knotie AI.</p>
+                <div className="bg-knotie-900/20 p-4 rounded-lg border border-knotie-800">
+                  <h4 className="font-semibold mb-2 text-brand-text-primary">🚀 More Features Coming Soon!</h4>
+                  <p className="text-sm mb-2 text-brand-text-secondary">This is just a preview of what's possible with{" "}
+                    <a 
+                      href="https://knotie-ai.pro" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-knotie-400 hover:text-knotie-300"
+                    >
+                      Knotie-AI Pro
+                    </a>.
+                  </p>
                   <a 
                     href="https://knotie-ai.pro" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-sm text-purple-400 hover:text-purple-300 underline"
+                    className="text-sm text-knotie-400 hover:text-knotie-300 underline"
                   >
                     Join us today at the best ever price! 🎯
                   </a>
                 </div>
                 <div>
-                  <label className="block mb-1">OpenAI API Key</label>
+                  <label className="block mb-1 text-brand-text-secondary">OpenAI API Key</label>
                   <input
                     type="password"
                     value={settings.openaiApiKey}
                     onChange={(e) => onUpdateSettings({ openaiApiKey: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/10 rounded font-mono text-sm"
+                    className="w-full px-3 py-2 bg-brand-background rounded font-mono text-sm border border-brand-border focus:border-knotie-400 focus:outline-none text-brand-text-primary"
                     placeholder="Enter OpenAI API Key"
                   />
-                  <p className="text-xs text-gray-400 mt-1">Changes take effect immediately</p>
+                  <p className="text-xs text-brand-text-muted mt-1">Changes take effect immediately</p>
                 </div>
                 <div>
-                  <label className="block mb-1">System Prompt</label>
+                  <label className="block mb-1 text-brand-text-secondary">System Prompt</label>
                   <textarea
                     value={settings.systemPrompt}
                     onChange={(e) => onUpdateSettings({ systemPrompt: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/10 rounded font-mono text-sm h-32"
+                    className="w-full px-3 py-2 bg-brand-background rounded font-mono text-sm h-32 border border-brand-border focus:border-knotie-400 focus:outline-none text-brand-text-primary"
                     placeholder="Enter system prompt"
                   />
-                  <p className="text-xs text-gray-400 mt-1">Changes take effect immediately</p>
+                  <p className="text-xs text-brand-text-muted mt-1">Changes take effect immediately</p>
                 </div>
                 <div>
-                  <label className="block mb-1">AI Model</label>
+                  <label className="block mb-1 text-brand-text-secondary">AI Model</label>
                   <select
                     value={settings.aiModel}
                     onChange={(e) => onUpdateSettings({ aiModel: e.target.value })}
-                    className="w-full px-3 py-2 bg-white/10 rounded font-mono text-sm"
+                    className="w-full px-3 py-2 bg-brand-background rounded font-mono text-sm border border-brand-border focus:border-knotie-400 focus:outline-none text-brand-text-primary"
                   >
                     <option value="gpt-4o-mini">GPT-4o-mini</option>
                     <option value="gpt-4">GPT-4</option>
                     <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
                   </select>
-                  <p className="text-xs text-gray-400 mt-1">Changes take effect immediately</p>
+                  <p className="text-xs text-brand-text-muted mt-1">Changes take effect immediately</p>
                 </div>
               </div>
             </div>
@@ -395,19 +429,16 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
         title={title}
         logo={logo}
         height={headerHeight}
-        onConnectClicked={() =>
-          onConnect(roomState === ConnectionState.Disconnected)
-        }
         onSettingsClicked={handleSettingsClick}
       />
       <div
-        className={`flex grow w-full selection:bg-cyan-900`}
+        className={`flex grow w-full selection:bg-brand-border bg-brand-background`}
         style={{ height: `calc(100% - ${headerHeight}px)` }}
       >
         {/* Voice Selection Panel - Left Side */}
         <Tile
           padding={false}
-          className={`h-full w-full basis-1/4 items-start overflow-y-auto hidden max-w-[480px] border-l border-white/20 ${
+          className={`h-full w-full basis-1/4 items-start overflow-y-auto hidden max-w-[480px] border-l border-brand-border bg-brand-background ${
             showVoices ? "md:flex" : "md:hidden"
           }`}
           childrenClassName="h-full grow items-start"
@@ -419,7 +450,7 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
         <div className="flex-col grow basis-1/2 gap-4 h-full md:flex">
           <Tile
             title="ASSISTANT"
-            className="w-full h-full grow"
+            className="w-full h-full grow bg-brand-background"
             childrenClassName="justify-center"
           >
             {audioTileContent}
@@ -429,7 +460,7 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
         {/* Settings Panel - Right Side */}
         <Tile
           padding={false}
-          className={`h-full w-full basis-1/4 items-start overflow-y-auto hidden max-w-[480px] border-l border-white/20 ${
+          className={`h-full w-full basis-1/4 items-start overflow-y-auto hidden max-w-[480px] border-l border-brand-border bg-brand-background ${
             showSettings ? "md:flex" : "md:hidden"
           }`}
           childrenClassName="h-full grow items-start"
@@ -439,7 +470,7 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
 
         {/* Mobile Panels */}
         <div
-          className={`bg-white/80 backdrop-blur-lg absolute w-full items-start transition-all duration-100 md:hidden ${
+          className={`bg-brand-background/95 backdrop-blur-lg absolute w-full items-start transition-all duration-100 md:hidden ${
             showVoices || showSettings ? "translate-x-0" : "translate-x-full"
           }`}
           style={{ height: `calc(100% - ${headerHeight}px)` }}
@@ -447,7 +478,7 @@ export default function Assistant({ title, logo, onConnect }: AssistantProps) {
           <div className="overflow-y-scroll h-full w-full">
             <div className="pb-32">{showVoices ? voiceSelectionPanel : settingsPanel}</div>
           </div>
-          <div className="pointer-events-none absolute z-10 bottom-0 w-full h-64 bg-gradient-to-t from-white to-transparent"></div>
+          <div className="pointer-events-none absolute z-10 bottom-0 w-full h-64 bg-gradient-to-t from-brand-background to-transparent"></div>
         </div>
       </div>
     </>

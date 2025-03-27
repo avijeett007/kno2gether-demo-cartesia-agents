@@ -1,87 +1,70 @@
-import { Button } from "@/components/button/Button";
-import { ReactNode } from "react";
+import { Button } from "./button/Button";
 import { SettingsSVG } from "./ui/icons";
+import Logo from "../components/Logo";
 
-type PlaygroundHeader = {
-  logo?: ReactNode;
-  title?: ReactNode;
-  height: number;
-  onConnectClicked: () => void;
+export interface HeaderProps {
+  title?: string;
+  logo?: React.ReactNode;
+  height?: number;
   onSettingsClicked?: () => void;
-};
+}
 
-export const Header = ({ logo, title, height, onConnectClicked, onSettingsClicked }: PlaygroundHeader) => {
+export function Header({
+  title,
+  height = 56,
+  onSettingsClicked,
+}: HeaderProps) {
   return (
-    <div
-      className={`flex gap-4 py-4 px-4 text-foreground justify-between items-center shrink-0 border-b border-white/20`}
-      style={{
-        height: height + "px",
-      }}
-    >
-      <div className="flex flex-col md:flex-row md:items-center md:gap-3 md:basis-2/3">
-        <div className="flex md:basis-1/2">
-          <a href="https://www.cartesia.ai" target="_blank">
-            {logo ?? <LKLogo />}
-          </a>
-        </div>
-        <div className="md:basis-1/2 md:text-center text-xs md:text-base font-semibold">
-          {title}
-        </div>
-      </div>
-      <div className="flex md:basis-1/3 justify-end items-center gap-2">
-        {onSettingsClicked && (
-          <Button
-            state="secondary"
-            size="medium"
-            onClick={onSettingsClicked}
+    <>
+      {/* Top announcement bar */}
+      <div className="w-full bg-brand-background text-brand-text-primary text-center py-2 text-sm flex items-center justify-center border-b border-brand-border">
+        <span className="animate-pulse">🚀</span>
+        <span className="ml-2">
+          <a 
+            href="https://knotie-ai.pro" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-knotie-400 hover:text-knotie-300"
           >
-            <SettingsSVG />
-          </Button>
-        )}
-        <Button
-          state="primary"
-          size="medium"
-          onClick={onConnectClicked}
-        >
-          Connect
-        </Button>
+            Knotie-AI Pro
+          </a>
+          {" "}is Live Now at Public Beta. Join our exclusive waitlist for early access and hear about special offers!
+        </span>
+        <span className="animate-pulse ml-2">🎯</span>
       </div>
-    </div>
-  );
-};
+      
+      <header
+        className="flex flex-row items-center justify-between px-4 bg-brand-background border-b border-brand-border"
+        style={{ height: `${height}px` }}
+      >
+        <div className="flex items-center">
+          <Logo />
+        </div>
 
-const LKLogo = () => (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g clipPath="url(#clip0_101_119699)">
-      <path
-        d="M19.2006 12.7998H12.7996V19.2008H19.2006V12.7998Z"
-        fill="currentColor"
-      />
-      <path
-        d="M25.6014 6.40137H19.2004V12.8024H25.6014V6.40137Z"
-        fill="currentColor"
-      />
-      <path
-        d="M25.6014 19.2002H19.2004V25.6012H25.6014V19.2002Z"
-        fill="currentColor"
-      />
-      <path d="M32 0H25.599V6.401H32V0Z" fill="currentColor" />
-      <path d="M32 25.5986H25.599V31.9996H32V25.5986Z" fill="currentColor" />
-      <path
-        d="M6.401 25.599V19.2005V12.7995V6.401V0H0V6.401V12.7995V19.2005V25.599V32H6.401H12.7995H19.2005V25.599H12.7995H6.401Z"
-        fill="white"
-      />
-    </g>
-    <defs>
-      <clipPath id="clip0_101_119699">
-        <rect width="32" height="32" fill="white" />
-      </clipPath>
-    </defs>
-  </svg>
-);
+        <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+          <h1 className="font-mono text-lg md:text-xl text-brand-text-primary font-semibold">
+            Customer Showcase Live App by Kno2gether
+          </h1>
+        </div>
+
+        <div className="flex items-center gap-4">
+          {onSettingsClicked && (
+            <Button
+              state="secondary"
+              size="medium"
+              onClick={onSettingsClicked}
+              className="bg-brand-border hover:bg-brand-hover text-brand-text-primary"
+            >
+              <SettingsSVG />
+            </Button>
+          )}
+          <img 
+            src="/knolabs350180logo.png" 
+            alt="Knolabs Agency" 
+            className="h-8"
+          />
+        </div>
+      </header>
+    </>
+  );
+}

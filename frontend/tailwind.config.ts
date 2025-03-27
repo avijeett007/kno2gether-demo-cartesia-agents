@@ -3,22 +3,33 @@ import type { Config } from "tailwindcss";
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
-const cartesia = {
-  50: "#e0e8f8",
-  100: "#c2d1f1",
-  200: "#a4bbed",
-  300: "#86a4ea",
-  400: "#688ee8",
-  500: "#1d4ed8",
-  600: "#1a47c1",
-  700: "#163faa",
-  800: "#133793",
-  900: "#102f7c",
-  950: "#0c2565",
+const knotie = {
+  50: "#e6f1fe",
+  100: "#cce3fd",
+  200: "#99c7fb",
+  300: "#66abf9",
+  400: "#338ff7",
+  500: "#0073f5",
+  600: "#005cc4",
+  700: "#004593",
+  800: "#002e62",
+  900: "#001731",
+};
+
+const brand = {
+  background: "#001731",
+  border: "#002e62",
+  hover: "#004593",
+  text: {
+    primary: "#F9FAFB",
+    secondary: "#cce3fd",
+    muted: "#66abf9"
+  }
 };
 
 const customColors = {
-  cartesia,
+  knotie,
+  brand
 };
 
 const config: Config = {
