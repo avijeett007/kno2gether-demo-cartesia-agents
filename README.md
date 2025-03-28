@@ -1,18 +1,11 @@
-# Cartesia Voice Agent Example
+# Knotie-AI Pro Voice Assistant
 
-This is a demo of a LiveKit [Voice Pipeline Agent](https://docs.livekit.io/agents/voice-agent/voice-pipeline/) using [Cartesia](https://www.cartesia.ai/) and GPT-4o-mini.
+This is a customized fork of [Cartesia Voice Agent](https://github.com/livekit-examples/cartesia-voice-agent) showcasing the capabilities of [Knotie-AI Pro](https://knotie-ai.pro) - an advanced AI voice assistant platform.
 
-The example includes a custom Next.js frontend and Python agent.
+## 🚀 Special Offer Alert!
+Join our [waitlist](https://knotie-ai.pro) in the next 3-4 weeks to receive an exclusive coupon code for Knotie-AI Pro's launch! Early adopters get special pricing.
 
-## Live Demo
-
-https://cartesia-assistant.vercel.app/
-
-![Screenshot of the Cartesia Voice Agent Example](.github/screenshot.png)
-
-## Running the example
-
-### Prerequisites
+## Prerequisites
 
 - Node.js
 - Python 3.9-3.12
@@ -21,24 +14,74 @@ https://cartesia-assistant.vercel.app/
 - OpenAI API key (for LLM)
 - Deepgram API key (for speech-to-text)
 
-### Frontend
+## Setup Instructions
 
-Copy `.env.example` to `.env.local` and set the environment variables. Then run:
+### Frontend Setup
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
 
-### Agent
+2. Copy the environment file and configure:
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your API keys
+   ```
 
-Copy `.env.example` to `.env` and set the environment variables. Then run:
+3. Install dependencies and run:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-```bash
-cd agent
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python main.py dev
-```
+### Agent Setup
+
+1. Navigate to the agent directory:
+   ```bash
+   cd agent
+   ```
+
+2. Set up Python environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Copy environment file and configure:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your API keys
+   ```
+
+5. Run the agent:
+   ```bash
+   python main.py dev
+   ```
+
+## Features
+- Real-time voice conversations with AI
+- Multiple voice options
+- Customizable system prompts
+- Easy integration with OpenAI models
+- Live settings updates through UI
+
+## Support
+Need help? Contact us at support@kno2gether.com
+
+## About Knotie-AI Pro
+Knotie-AI Pro is revolutionizing voice AI interactions with advanced features, natural conversations, and seamless integration capabilities. Currently in public beta, we're offering early access with special benefits to waitlist members.
+
+[Join our waitlist](https://knotie-ai.pro) today to:
+- Get exclusive launch pricing
+- Receive special coupon codes
+- Access beta features first
+- Shape the future of voice AI
+
+## License
+This demo is provided as-is under the MIT license. For commercial use, please visit [Knotie-AI Pro](https://knotie-ai.pro).
